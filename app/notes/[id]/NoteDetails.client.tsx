@@ -5,9 +5,12 @@ import { useParams } from 'next/navigation';
 import { fetchNoteById } from '@/lib/api';
 import css from './page.module.css';
 
-const NoteDetailsClient = () => {
-  const { id } = useParams<{ id: string }>();
+type Props = {
+  id: string;
+};
 
+const NoteDetailsClient = ({ id }: Props) => {
+  
   const { data: note, isLoading, isError } = useQuery({
     queryKey: ['note', id],
     queryFn: () => fetchNoteById(id),
